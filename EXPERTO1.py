@@ -32,8 +32,8 @@ mydata = mydata[['geo','lev_satis',0]]
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
 mydata.rename(columns={0:'Thousand persons'},inplace=True)
 mydata = mydata.pivot(index='ADMIN',columns='lev_satis',values='Thousand persons').reset_index()
-mydata['percentage'] = 100*mydata['High']/mydata['Total']
-table = mydata[['ADMIN','percentage']]
+mydata['Porcentaje'] = 100*mydata['High']/mydata['Total']
+table = mydata[['ADMIN','Porcentaje']]
 
 world = geopandas.read_file('/content/EXPERTO/ne_110m_admin_0_countries.zip')[['ADMIN','geometry']]
 polygon = Polygon([(-25,35),(40,35),(40,75),(-25,75)])
@@ -42,6 +42,6 @@ europe = geopandas.clip(world,polygon)
 mydata = mydata.merge(europe,on='ADMIN',how='right')
 mydata = geopandas.GeoDataFrame(mydata,geometry='geometry')
 fig,ax = plt.subplots(1,figsize=(10,10))
-mydata.plot(column='percentage',alpha=0.8,cmap='cool',ax=ax,legend=True)
+mydata.plot(column='Porcentaje',alpha=0.8,cmap='viridis',ax=ax,legend=True)
 ax.set_title('Porcentaje de trabajadores de 25 a 74 años de edad\naltamente satisfechos con su puesto de trabajo en 2021 (fuente: Eurostat)')
 ax.axis('off')
