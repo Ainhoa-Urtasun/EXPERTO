@@ -6,4 +6,3 @@ def economia_social(es):
     fig = plt.figure(figsize = (9,6))
     plt.imshow(wc)
     plt.axis("off")
-    return plt.show()
