@@ -36,6 +36,6 @@ mydata = mydata.merge(europe,on='ADMIN',how='right')
 mydata = geopandas.GeoDataFrame(mydata,geometry='geometry')
 fig,ax = plt.subplots(1,figsize=(10,10))
 mydata.plot(column='Number of firms',alpha=0.8,cmap='viridis',ax=ax,legend=True)
-ax.set_title('Porcentaje de trabajadores de 25 a 74 años de edad\naltamente satisfechos con su puesto de trabajo en 2021 (fuente: Eurostat)')
+ax.set_title('Número de empresas por forma legal (fuente: Eurostat)')
 ax.axis('off')
     
