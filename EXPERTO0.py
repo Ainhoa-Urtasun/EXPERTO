@@ -25,10 +25,12 @@ mydata = mydata[mydata['age']=='Total']
 mydata = mydata[mydata['sizeclas']=='Total']
 mydata = mydata[mydata['indic_sbs']=='Enterprises - number']
 mydata = mydata[mydata['nace_r2']=='Industry, construction and market services (except activities of membership organizations)']
-mydata = mydata[['geo',0]]
+mydata = mydata[['geo','time',0]]
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
+mydata.rename(columns={'time':'Año'},inplace=True)
 mydata.rename(columns={0:'Número de empresas'},inplace=True)
-datos = mydata[mydata['time']==2021]
+datos = mydata.copy()
+mydata = mydata.loc[mydata['Año']==2021,['ADMIN','Número de empresas']]
 
 world = geopandas.read_file('/content/EXPERTO/ne_110m_admin_0_countries.zip')[['ADMIN','geometry']]
 polygon = Polygon([(-25,35),(40,35),(40,75),(-25,75)])
