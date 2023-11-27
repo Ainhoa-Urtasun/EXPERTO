@@ -26,7 +26,7 @@ mydata = mydata[mydata['indic_sbs']=='Enterprises - number']
 mydata = mydata[mydata['nace_r2']=='Industry, construction and market services (except activities of membership organizations)']
 mydata = mydata[['geo',0]]
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
-mydata.rename(columns={0:'Number of firms'},inplace=True)
+mydata.rename(columns={0:'Número de empresas'},inplace=True)
 datos = mydata
 print(datos)
 mydata = mydata[mydata['time']==2021]
@@ -38,7 +38,7 @@ europe = geopandas.clip(world,polygon)
 mydata = mydata.merge(europe,on='ADMIN',how='right')
 mydata = geopandas.GeoDataFrame(mydata,geometry='geometry')
 fig,ax = plt.subplots(1,figsize=(10,10))
-mydata.plot(column='Number of firms',alpha=0.8,cmap='viridis',ax=ax,legend=True)
+mydata.plot(column='Número de empresas',alpha=0.8,cmap='viridis',ax=ax,legend=True)
 ax.set_title('Número de empresas por forma legal (fuente: Eurostat)')
 ax.axis('off')
     
