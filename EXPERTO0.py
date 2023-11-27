@@ -8,9 +8,6 @@ import pyproj
 import warnings
 warnings.filterwarnings("ignore")
 
-#plt.rcParams['figure.figsize']=(12,10)
-#plt.rcParams['font.size']=12
-
 fixed = 'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/'
 url = '{}{}'.format(fixed,'bd_size')
 metadata = requests.get(url).json()
@@ -24,14 +21,13 @@ structure = [pandas.DataFrame({key:val for key,val in metadata['dimension'][dim]
 data.index = pandas.MultiIndex.from_product(structure,names=metadata['id'])
 mydata = data.reset_index()
 print(mydata)
-mydata = mydata[mydata.sex=='Total']
-mydata = mydata[mydata['c_birth']=='Total']
-mydata = mydata[mydata['isced11']=='All ISCED 2011 levels']
-mydata = mydata[mydata.age=='From 25 to 74 years']
-mydata = mydata[(mydata['lev_satis']=='Total')|(mydata['lev_satis']=='High')]
-mydata = mydata[['geo','lev_satis',0]]
+mydata = mydata[mydata['age']=='Total']
+mydata = mydata[mydata['sizeclass']=='Total']
+mydata = mydata[mydata['indic_sbs']=='Enterprises - number']
+mydata = mydata[mydata['nace_r2']=='Industry, construction and market services (except activities of membership organizations)']
+mydata = mydata[['geo',0]]
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
-mydata.rename(columns={0:'Thousand persons'},inplace=True)
+mydata.rename(columns={0:'Number of firms'},inplace=True)
 mydata = mydata.pivot(index='ADMIN',columns='lev_satis',values='Thousand persons').reset_index()
 mydata['Porcentaje'] = 100*mydata['High']/mydata['Total']
 table = mydata[['ADMIN','Porcentaje']]
