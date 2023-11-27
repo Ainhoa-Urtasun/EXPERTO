@@ -27,7 +27,8 @@ mydata = mydata[mydata['nace_r2']=='Industry, construction and market services (
 mydata = mydata[['geo',0]]
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
 mydata.rename(columns={0:'Number of firms'},inplace=True)
-tabla = mydata
+datos = mydata
+print(datos)
 mydata = mydata[mydata['time']==2021]
 
 world = geopandas.read_file('/content/EXPERTO/ne_110m_admin_0_countries.zip')[['ADMIN','geometry']]
