@@ -27,7 +27,6 @@ mydata = mydata[mydata['nace_r2']=='Industry, construction and market services (
 mydata = mydata[['geo',0]]
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
 mydata.rename(columns={0:'Number of firms'},inplace=True)
-mydata = mydata.pivot(index='ADMIN',columns='lev_satis',values='Thousand persons').reset_index()
 
 world = geopandas.read_file('/content/EXPERTO/ne_110m_admin_0_countries.zip')[['ADMIN','geometry']]
 polygon = Polygon([(-25,35),(40,35),(40,75),(-25,75)])
