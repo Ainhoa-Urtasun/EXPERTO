@@ -27,7 +27,7 @@ mydata = mydata[mydata['nace_r2'].str.contains('Industry, construction and marke
 
 mydata = mydata[mydata['time']==2021]
 
-mydata = mydata[(mydata['leg_form']=='ent_sole')|(mydata['leg_form']=='ent_pa')|(mydata['leg_form']=='ent_ll')]
+mydata = mydata[(mydata['leg_form']=='Sole proprietorship')|(mydata['leg_form']=='Partnership, co-operatives, associations, etc.')|(mydata['leg_form']=='Limited liability enterprise')]
 mydata = mydata[['geo','leg_form',0]]
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
 mydata.rename(columns={0:'Número de empresas'},inplace=True)
