@@ -27,8 +27,8 @@ mydata = mydata[mydata['time']=='2021']
 mydata = mydata[(mydata['leg_form']=='Sole proprietorship')|(mydata['leg_form']=='Partnership, co-operatives, associations, etc.')|(mydata['leg_form']=='Limited liability enterprise')]
 mydata = mydata[['geo','leg_form',0]]
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
-mydata.rename(columns={'0':'Número de empresas'},inplace=True)
-mydata = mydata.pivot(index='ADMIN',columns='leg_form',values='Número de empresas').reset_index()
+mydata.rename(columns={0:'Empresas'},inplace=True)
+mydata = mydata.pivot(index='ADMIN',columns='leg_form',values='Empresas').reset_index()
 print(mydata)
 
 world = geopandas.read_file('/content/EXPERTO/ne_110m_admin_0_countries.zip')[['ADMIN','geometry']]
@@ -38,7 +38,7 @@ europe = geopandas.clip(world,polygon)
 mydata = mydata.merge(europe,on='ADMIN',how='right')
 mydata = geopandas.GeoDataFrame(mydata,geometry='geometry')
 fig,ax = plt.subplots(1,figsize=(10,10))
-mydata.plot(column='Número de empresas',alpha=0.8,cmap='viridis',ax=ax,legend=True)
+mydata.plot(column='Empresas',alpha=0.8,cmap='viridis',ax=ax,legend=True)
 ax.set_title('Número de empresas por forma legal (fuente: Eurostat)')
 ax.axis('off')
     
