@@ -23,8 +23,8 @@ mydata = data.reset_index()
 
 mydata = mydata[mydata['indic_sbs']=='Enterprises - number']
 mydata = mydata[mydata['nace_r2'].str.contains('Industry, construction and market services')]
-print(mydata)
 mydata = mydata[mydata['time']==2021]
+print(mydata)
 mydata = mydata[(mydata['leg_form']=='Sole proprietorship')|(mydata['leg_form']=='Partnership, co-operatives, associations, etc.')|(mydata['leg_form']=='Limited liability enterprise')]
 mydata = mydata[['geo','leg_form',0]]
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
