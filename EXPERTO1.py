@@ -8,9 +8,6 @@ import pyproj
 import warnings
 warnings.filterwarnings("ignore")
 
-#plt.rcParams['figure.figsize']=(12,10)
-#plt.rcParams['font.size']=12
-
 fixed = 'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/'
 url = '{}{}'.format(fixed,'lfso_21jsat01')
 metadata = requests.get(url).json()
@@ -23,6 +20,7 @@ data = data.reindex(range(0,n),fill_value=0)
 structure = [pandas.DataFrame({key:val for key,val in metadata['dimension'][dim]['category'].items()}).sort_values('index')['label'].values for dim in metadata['id']]
 data.index = pandas.MultiIndex.from_product(structure,names=metadata['id'])
 mydata = data.reset_index()
+
 mydata = mydata[mydata.sex=='Total']
 mydata = mydata[mydata['c_birth']=='Total']
 mydata = mydata[mydata['isced11']=='All ISCED 2011 levels']
