@@ -20,10 +20,10 @@ data = data.reindex(range(0,n),fill_value=0)
 structure = [pandas.DataFrame({key:val for key,val in metadata['dimension'][dim]['category'].items()}).sort_values('index')['label'].values for dim in metadata['id']]
 data.index = pandas.MultiIndex.from_product(structure,names=metadata['id'])
 mydata = data.reset_index()
-
+print(mydata)
 mydata = mydata[mydata['indic_sbs']=='Enterprises - number']
 mydata = mydata[mydata['nace_r2'].str.contains('Industry, construction and market services')]
-print(mydata)
+
 mydata = mydata[mydata['time']==2021]
 
 mydata = mydata[(mydata['leg_form']=='ent_sole')|(mydata['leg_form']=='ent_pa')|(mydata['leg_form']=='ent_ll')]
