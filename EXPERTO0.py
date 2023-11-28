@@ -31,7 +31,7 @@ mydata.rename(columns={0:'Empresas'},inplace=True)
 mydata = mydata.pivot(index='ADMIN',columns='leg_form',values='Empresas').reset_index()
 mydata['Porcentaje'] = 100*mydata['Partnership, co-operatives, associations, etc.']/mydata['Total']
 mydata = mydata[['ADMIN','Porcentaje']]
-print(mydata)
+datos = mydata.copy()
 
 world = geopandas.read_file('/content/EXPERTO/ne_110m_admin_0_countries.zip')[['ADMIN','geometry']]
 polygon = Polygon([(-25,35),(40,35),(40,75),(-25,75)])
