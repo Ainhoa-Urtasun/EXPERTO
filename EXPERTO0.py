@@ -24,11 +24,13 @@ mydata = data.reset_index()
 mydata = mydata[mydata['indic_sbs']=='Enterprises - number']
 mydata = mydata[mydata['nace_r2'].str.contains('Industry, construction and market services')]
 mydata = mydata[mydata['time']=='2021']
-mydata = mydata[(mydata['leg_form']=='Sole proprietorship')|(mydata['leg_form']=='Partnership, co-operatives, associations, etc.')|(mydata['leg_form']=='Limited liability enterprise')]
+mydata = mydata[(mydata['leg_form']=='Total')|(mydata['leg_form']=='Partnership, co-operatives, associations, etc.')]
 mydata = mydata[['geo','leg_form',0]]
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
 mydata.rename(columns={0:'Empresas'},inplace=True)
 mydata = mydata.pivot(index='ADMIN',columns='leg_form',values='Empresas').reset_index()
+mydata['Porcentaje'] = 100*mydata['Partnership, co-operatives, associations, etc.']/mydata['Total']
+mydata = mydata['ADMIN','Porcentaje']
 print(mydata)
 
 world = geopandas.read_file('/content/EXPERTO/ne_110m_admin_0_countries.zip')[['ADMIN','geometry']]
@@ -38,7 +40,7 @@ europe = geopandas.clip(world,polygon)
 mydata = mydata.merge(europe,on='ADMIN',how='right')
 mydata = geopandas.GeoDataFrame(mydata,geometry='geometry')
 fig,ax = plt.subplots(1,figsize=(10,10))
-mydata.plot(column='Empresas',alpha=0.8,cmap='viridis',ax=ax,legend=True)
-ax.set_title('Número de empresas por forma legal (fuente: Eurostat)')
+mydata.plot(column='Porcentaje',alpha=0.8,cmap='viridis',ax=ax,legend=True)
+ax.set_title('Porcentaje de cooperativas y asociaciones (fuente: Eurostat)')
 ax.axis('off')
     
