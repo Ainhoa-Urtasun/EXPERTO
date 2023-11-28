@@ -9,7 +9,7 @@ import warnings
 warnings.filterwarnings("ignore")
 
 fixed = 'https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/'
-url = '{}{}'.format(fixed,'bd_size')
+url = '{}{}'.format(fixed,'bd_l_form')
 metadata = requests.get(url).json()
 print(metadata['label'])
 data = pandas.Series(metadata['value']).rename(index=int).sort_index()
