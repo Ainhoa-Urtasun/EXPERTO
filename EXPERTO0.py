@@ -23,7 +23,7 @@ mydata = data.reset_index()
 mydata = mydata[mydata['age']=='Total']
 mydata = mydata[mydata['sizeclas']=='Total']
 mydata = mydata[mydata['indic_sbs']=='Enterprises - number']
-mydata = mydata[mydata['nace_r2'].str.contains('Industry, construction and market services)']
+mydata = mydata[mydata['nace_r2'].str.contains('Industry, construction and market services')]
 mydata = mydata[['geo','time',0]]
 print(mydata)
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
