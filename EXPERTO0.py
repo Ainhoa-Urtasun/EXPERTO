@@ -20,11 +20,11 @@ data = data.reindex(range(0,n),fill_value=0)
 structure = [pandas.DataFrame({key:val for key,val in metadata['dimension'][dim]['category'].items()}).sort_values('index')['label'].values for dim in metadata['id']]
 data.index = pandas.MultiIndex.from_product(structure,names=metadata['id'])
 mydata = data.reset_index()
-print(mydata)
 mydata = mydata[mydata['age']=='Total']
 mydata = mydata[mydata['sizeclas']=='Total']
 mydata = mydata[mydata['indic_sbs']=='Enterprises - number']
-mydata = mydata[mydata['nace_r2']=='Industry, construction and market services (except activities of membership organizations)']
+print(mydata)
+#mydata = mydata[mydata['nace_r2']=='Industry, construction and market services (except activities of membership organizations)']
 mydata = mydata[['geo','time',0]]
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
 mydata.rename(columns={'time':'Año'},inplace=True)
