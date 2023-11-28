@@ -25,8 +25,8 @@ mydata = mydata[mydata['indic_sbs']=='Enterprises - number']
 mydata = mydata[mydata['nace_r2'].str.contains('Industry, construction and market services')]
 mydata = mydata[mydata['time']=='2021']
 mydata = mydata[(mydata['leg_form']=='Sole proprietorship')|(mydata['leg_form']=='Partnership, co-operatives, associations, etc.')|(mydata['leg_form']=='Limited liability enterprise')]
-print(mydata)
 mydata = mydata[['geo','leg_form',0]]
+print(mydata)
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
 mydata.rename(columns={0:'Número de empresas'},inplace=True)
 mydata = mydata.pivot(index='ADMIN',columns='leg_form',values='Número de empresas').reset_index()
