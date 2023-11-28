@@ -30,7 +30,6 @@ mydata.rename(columns={'geo':'ADMIN'},inplace=True)
 mydata.rename(columns={0:'Número de empresas'},inplace=True)
 mydata = mydata.pivot(index='ADMIN',columns='leg_form',values='Número de empresas').reset_index()
 print(mydata)
-
 world = geopandas.read_file('/content/EXPERTO/ne_110m_admin_0_countries.zip')[['ADMIN','geometry']]
 polygon = Polygon([(-25,35),(40,35),(40,75),(-25,75)])
 europe = geopandas.clip(world,polygon)
