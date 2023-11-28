@@ -26,10 +26,10 @@ mydata = mydata[mydata['nace_r2'].str.contains('Industry, construction and marke
 mydata = mydata[mydata['time']=='2021']
 mydata = mydata[(mydata['leg_form']=='Sole proprietorship')|(mydata['leg_form']=='Partnership, co-operatives, associations, etc.')|(mydata['leg_form']=='Limited liability enterprise')]
 mydata = mydata[['geo','leg_form',0]]
-print(mydata)
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
-mydata.rename(columns={0:'Número de empresas'},inplace=True)
+mydata.rename(columns={'0':'Número de empresas'},inplace=True)
 mydata = mydata.pivot(index='ADMIN',columns='leg_form',values='Número de empresas').reset_index()
+print(mydata)
 
 world = geopandas.read_file('/content/EXPERTO/ne_110m_admin_0_countries.zip')[['ADMIN','geometry']]
 polygon = Polygon([(-25,35),(40,35),(40,75),(-25,75)])
