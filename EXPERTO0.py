@@ -23,9 +23,9 @@ mydata = data.reset_index()
 mydata = mydata[mydata['age']=='Total']
 mydata = mydata[mydata['sizeclas']=='Total']
 mydata = mydata[mydata['indic_sbs']=='Enterprises - number']
-print(mydata)
-#mydata = mydata[mydata['nace_r2']=='Industry, construction and market services (except activities of membership organizations)']
+mydata = mydata[mydata['nace_r2'].str.contains('Industry, construction and market services)']
 mydata = mydata[['geo','time',0]]
+print(mydata)
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
 mydata.rename(columns={'time':'Año'},inplace=True)
 mydata.rename(columns={0:'Número de empresas'},inplace=True)
