@@ -22,6 +22,7 @@ data.index = pandas.MultiIndex.from_product(structure,names=metadata['id'])
 mydata = data.reset_index()
 
 mydata = mydata[mydata.geo=='Spain']
+mydata = mydata[mydata.unit=='Index, 2012=100']
 print(mydata)
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
 #table = mydata[['ADMIN','Porcentaje']]
