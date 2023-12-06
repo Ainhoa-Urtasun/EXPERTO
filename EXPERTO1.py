@@ -29,7 +29,7 @@ mydata = mydata.pivot(index='time',columns='na_item',values=0).reset_index()
 plt.figure(figsize=(20,6))  # Adjust the figure size if needed
 plt.plot(mydata.time,mydata['Nominal unit labour cost based on hours worked'], label='Coste laboral nominal por hora trabajada', marker='o')  # Plotting variable 1
 plt.plot(mydata.time,mydata['Real labour productivity per hour worked'], label='Productividad laboral real por hora trabajada', marker='x')  # Plotting variable 2
-plt.xticks(numpy.arange(2000,2021,1),numpy.arange(2000,2021,1))  # Set ticks and labels
+plt.xticks([],[])  # Set ticks and labels
 plt.xlabel('Años')
 plt.title('2015 = 100')
 plt.legend()
