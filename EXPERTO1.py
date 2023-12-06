@@ -27,10 +27,10 @@ mydata = mydata[mydata.time.str.contains('20')]
 mydata = mydata.pivot(index='time',columns='na_item',values=0).reset_index()
 
 plt.figure(figsize=(20,6))  # Adjust the figure size if needed
-plt.plot(mydata.time,mydata['Nominal unit labour cost based on hours worked'], label='Coste laboral nominal por hora trabajada', marker='o')  # Plotting variable 1
-plt.plot(mydata.time,mydata['Real labour productivity per hour worked'], label='Productividad laboral real por hora trabajada', marker='x')  # Plotting variable 2
+plt.plot(mydata.time,mydata['Nominal unit labour cost based on hours worked'], label='Coste laboral unitario (remuneración por hora trabajada)', marker='o')  # Plotting variable 1
+plt.plot(mydata.time,mydata['Real labour productivity per hour worked'], label='Productividad laboral (producto interior bruto real por hora trabajada)', marker='x')  # Plotting variable 2
 plt.xticks([],[])  # Set ticks and labels
 plt.xlabel('Años')
-plt.title('2015 = 100')
+plt.title('Indices quatrimestrales (2015 = 100) de 2000 a 2023')
 plt.legend()
 
