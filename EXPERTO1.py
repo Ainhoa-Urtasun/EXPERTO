@@ -1,5 +1,6 @@
 import requests
 import json
+import numpy
 import pandas
 import matplotlib.pyplot as plt
 import warnings
