@@ -23,6 +23,7 @@ mydata = data.reset_index()
 
 mydata = mydata[mydata.geo=='Spain']
 mydata = mydata[mydata.unit=='Index, 2015=100']
+mydata = mydata[mydata['s_adj'].str.contains('Unadjusted')]
 print(mydata)
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
 #table = mydata[['ADMIN','Porcentaje']]
