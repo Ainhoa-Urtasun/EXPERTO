@@ -1,10 +1,7 @@
 import requests
 import json
 import pandas
-import geopandas
 import matplotlib.pyplot as plt
-from shapely.geometry import Polygon
-import pyproj
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -26,7 +23,11 @@ mydata = mydata[mydata.unit=='Index, 2015=100']
 mydata = mydata[mydata['s_adj'].str.contains('Unadjusted')]
 mydata = mydata[mydata['na_item'].str.contains('work')]
 mydata = mydata[mydata.time.str.contains('20')]
-mydata.rename(columns={'geo':'ADMIN'},inplace=True)
-mydata = mydata.pivot(index='na_item',columns='time',values=0).reset_index()
-print(mydata)
+mydata = mydata[['time',]]
+mydata = mydata.pivot(index='time',columns='na_item',values=0).reset_index()
+
+plt.figure(figsize=(8,6))  # Adjust the figure size if needed
+plt.plot(mydata.time,mydata['Nominal unit labour cost based on hours worked'], label='Variable 1', marker='o')  # Plotting variable 1
+plt.plot(mydata.time,mydata['Real labour productivity per hour worked'], label='Variable 2', marker='x')  # Plotting variable 2
+
 
