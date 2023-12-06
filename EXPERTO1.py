@@ -25,8 +25,11 @@ mydata = mydata[mydata['na_item'].str.contains('work')]
 mydata = mydata[mydata.time.str.contains('20')]
 mydata = mydata.pivot(index='time',columns='na_item',values=0).reset_index()
 
-plt.figure(figsize=(8,6))  # Adjust the figure size if needed
+plt.figure(figsize=(20,6))  # Adjust the figure size if needed
 plt.plot(mydata.time,mydata['Nominal unit labour cost based on hours worked'], label='Variable 1', marker='o')  # Plotting variable 1
 plt.plot(mydata.time,mydata['Real labour productivity per hour worked'], label='Variable 2', marker='x')  # Plotting variable 2
-
+plt.xlabel('Time')
+plt.ylabel('Value')
+plt.title('Variables Across Time')
+plt.legend()
 
