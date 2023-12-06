@@ -31,7 +31,7 @@ plt.plot(mydata.time,mydata['Nominal unit labour cost based on hours worked'], l
 plt.plot(mydata.time,mydata['Real labour productivity per hour worked'], label='Productividad laboral (producto interior bruto real por hora trabajada)', marker='x')  # Plotting variable 2
 plt.xticks([],[])  # Set ticks and labels
 plt.xlabel('Quatrimestres de 2000 a 2023')
-plt.ylabel(Indices (2015=100))
+plt.ylabel('Indices (2015=100)')
 plt.legend()
 plt.grid(True)
 
