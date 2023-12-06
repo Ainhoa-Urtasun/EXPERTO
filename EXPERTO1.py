@@ -24,7 +24,7 @@ mydata = data.reset_index()
 mydata = mydata[mydata.geo=='Spain']
 mydata = mydata[mydata.unit=='Index, 2015=100']
 mydata = mydata[mydata['s_adj'].str.contains('Unadjusted')]
-mydata = mydata[mydata['na_item'].str.contains('person')]
+mydata = mydata[mydata['na_item'].str.contains('hours')]
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
 mydata = mydata.pivot(index='na_item',columns='time',values=0).reset_index()
 print(mydata)
