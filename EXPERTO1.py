@@ -25,7 +25,7 @@ mydata = mydata[mydata.geo=='Spain']
 mydata = mydata[mydata.unit=='Index, 2015=100']
 mydata = mydata[mydata['s_adj'].str.contains('Unadjusted')]
 mydata = mydata[(mydata['na_item'].str.contains('Real'))&(mydata['na_item'].str.contains('person'))]
-print(mydata)
 mydata.rename(columns={'geo':'ADMIN'},inplace=True)
-#table = mydata[['ADMIN','Porcentaje']]
+mydata = mydata.pivot(index='na_item',columns='time',values=0).reset_index()
+print(mydata)
 
