@@ -23,7 +23,6 @@ mydata = mydata[mydata.unit=='Index, 2015=100']
 mydata = mydata[mydata['s_adj'].str.contains('Unadjusted')]
 mydata = mydata[mydata['na_item'].str.contains('work')]
 mydata = mydata[mydata.time.str.contains('20')]
-mydata = mydata[['time',]]
 mydata = mydata.pivot(index='time',columns='na_item',values=0).reset_index()
 
 plt.figure(figsize=(8,6))  # Adjust the figure size if needed
